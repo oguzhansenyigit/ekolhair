@@ -31,10 +31,15 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.classList.toggle("nav-open", open);
+    return () => document.body.classList.remove("nav-open");
+  }, [open]);
+
   return (
     <header className={`site-header ${scrolled || open ? "is-active" : ""} ${open ? "is-open" : ""}`}>
       <div className="header-inner">
-        <Link href="/" className="brand" aria-label="EKOL HAIR PROTEZ Ana Sayfa">
+        <Link href="/" className="brand" aria-label="EKOL HAIR PROTEZ Ana Sayfa" onClick={() => setOpen(false)}>
           <span className="brand-icon">
             <BarberIcon />
           </span>
@@ -44,7 +49,7 @@ export function SiteHeader() {
           </span>
         </Link>
         <button
-          className="nav-toggle"
+          className={`nav-toggle ${open ? "is-open" : ""}`}
           aria-expanded={open}
           aria-controls="siteNav"
           aria-label={open ? "Menüyü kapat" : "Menüyü aç"}

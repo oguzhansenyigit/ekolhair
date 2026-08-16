@@ -22,7 +22,7 @@ export default function HomePage() {
       <section className="section">
         <div className="section-head">
           <h2>Before After Sonuçları</h2>
-          <p>Gerçek müşteri uygulamaları. Farklı açıları inceleyin; doğal yoğunluk ve ön çizgi detaylarını görün.</p>
+          <p>Gerçek müşteri uygulamaları. Kaydırarak öncesi → sonrası ilerleyin.</p>
         </div>
         <BeforeAfterGrid cases={cases} />
         <p style={{ marginTop: "1.5rem" }}>
