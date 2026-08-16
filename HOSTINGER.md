@@ -1,20 +1,11 @@
-# Hostinger — EKOL HAIR (PHP)
+# Hostinger — Next.js static export
 
-Bu site **PHP**’dir. Next.js / Node / `npm` / `node server.js` KULLANMA.
+1. Framework: Next.js (veya Other)
+2. Build command: `npm install && npm run build`
+3. Output directory: `out`  ← kritik (`.next` değil)
+4. Start / Entry / node server.js: BOŞ bırak
 
-## Doğru kurulum
+Redeploy sonrası site düz HTML olarak açılır. `/_next` 404 olmamalı.
 
-1. Hostinger’da bu domain için **Website** (PHP) hosting kullan — **Node.js / Next.js uygulaması değil**.
-2. GitHub repo’yu bağla → deploy et (document root = site kökü, `index.php` görünsün).
-3. phpMyAdmin:
-   - `sql/schema.sql` import
-   - `sql/seed_blogs.sql` import (~507 yazı)
-4. Gerekirse `includes/config.php` içinde telefon / WhatsApp güncelle.
-
-## Kontrol
-
-- Ana sayfa: video + CSS görünmeli (`/assets/css/style.css`)
-- Blog: `/blog` dolu gelmeli
-- Sitemap: `/sitemap.xml`
-
-Eski Next.js deploy’u varsa sil / PHP website’e geç — yoksa yine `/_next` 404 görürsün.
+Blog: build sırasında MySQL okunur; bağlanamazsa `data/posts.json` kullanılır.
+MySQL’i zaten import ettiysen env’de DB_* doğru olsun.

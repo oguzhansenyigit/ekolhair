@@ -1,9 +1,10 @@
 # EKOL HAIR PROTEZ
 
-PHP + MySQL website for https://ekohair.oguzhansenyigit.com
+Next.js 15 static export site for https://ekohair.oguzhansenyigit.com
 
-- Hero video, before/after gallery
-- 507 SEO blog posts (İstanbul districts)
-- Sitemap + robots + schema
+```bash
+npm install
+npm run build
+```
 
-See `HOSTINGER.md` for deploy.
+See `HOSTINGER.md` — Output directory must be `out`.
