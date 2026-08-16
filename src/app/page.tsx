@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { HeroVideo } from "@/components/HeroVideo";
 import { BeforeAfterGrid } from "@/components/BeforeAfterGrid";
-import { beforeAfterCases, ISTANBUL_DISTRICTS, PRIORITY_DISTRICTS, slugify } from "@/lib/site";
+import { beforeAfterCases, ISTANBUL_DISTRICTS, slugify } from "@/lib/site";
 
 export default function HomePage() {
   const cases = beforeAfterCases();
@@ -10,13 +10,13 @@ export default function HomePage() {
     <>
       <HeroVideo />
 
-      <div className="seo-strip" aria-label="Öne çıkan SEO ilçeleri">
-        {PRIORITY_DISTRICTS.map((d) => (
-          <span key={d} style={{ display: "contents" }}>
-            <Link href={`/ilce/${slugify(d)}`}>{d} protez saç</Link>
-            <Link href={`/blog?ilce=${encodeURIComponent(d)}`}>{d} protez saç bakımı</Link>
-          </span>
-        ))}
+      <div className="seo-strip" aria-label="Öne çıkan hizmetler">
+        <Link href="/before-after">Before After sonuçları</Link>
+        <Link href="/hizmetler">Protez saç uygulaması</Link>
+        <Link href="/hizmetler">Protez saç bakımı</Link>
+        <Link href="/blog">Uzman rehberler</Link>
+        <Link href="/iletisim">Ücretsiz danışmanlık</Link>
+        <Link href="/iletisim">Hemen randevu</Link>
       </div>
 
       <section className="section">

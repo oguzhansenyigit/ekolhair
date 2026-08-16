@@ -35,12 +35,9 @@ export function HeroVideo() {
       </video>
       <div className="hero-video__overlay" aria-hidden="true" />
       <div className="hero-video__content">
-        <p className="hero-kicker">OUTLET FIRSAT &amp; PROFESYONEL UYGULAMA</p>
+        <p className="hero-kicker">DOĞAL GÖRÜNÜM · GÜÇLÜ TUTUŞ</p>
         <h1 className="hero-title">ERKEK PROTEZ SAÇ</h1>
-        <p className="hero-sub">
-          Güçlü tutuş ve maksimum güven için profesyonel çözümler. Bahçelievler, Bağcılar ve Güngören odaklı
-          İstanbul hizmeti.
-        </p>
+        <p className="hero-sub">İnanılmaz bir doğal dönüşüme şahit olun..</p>
         <div className="hero-actions">
           <Link className="btn btn-ghost" href="/before-after">
             İNCELE

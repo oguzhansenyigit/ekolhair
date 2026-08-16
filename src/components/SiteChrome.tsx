@@ -55,8 +55,9 @@ export function SiteHeader() {
           aria-label={open ? "Menüyü kapat" : "Menüyü aç"}
           onClick={() => setOpen((v) => !v)}
         >
-          <span />
-          <span />
+          <span className="nav-toggle__bar" />
+          <span className="nav-toggle__bar" />
+          <span className="nav-toggle__bar" />
         </button>
         <nav className="site-nav" id="siteNav" aria-label="Ana menü">
           <Link href="/" onClick={() => setOpen(false)}>
