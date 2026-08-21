@@ -16,6 +16,15 @@ function BarberIcon() {
   );
 }
 
+const links = [
+  { href: "/", label: "Ana Sayfa" },
+  { href: "/before-after/", label: "Before After" },
+  { href: "/hizmetler/", label: "Hizmetler" },
+  { href: "/blog/", label: "Blog" },
+  { href: "/ilce/bahcelievler/", label: "Bahçelievler" },
+  { href: "/iletisim/", label: "Randevu", cta: true },
+] as const;
+
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [solid, setSolid] = useState(false);
@@ -29,33 +38,57 @@ export function SiteHeader() {
 
   useEffect(() => {
     document.body.classList.toggle("nav-open", open);
+    return () => document.body.classList.remove("nav-open");
   }, [open]);
 
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  const close = () => setOpen(false);
+
   return (
-    <header className={`site-header${solid ? " is-solid" : ""}${open ? " is-nav-open" : ""}`}>
-      <Link className="brand" href="/" onClick={() => setOpen(false)}>
-        <span className="brand-mark"><BarberIcon /></span>
-        <span className="brand-text">{siteConfig.name}</span>
-      </Link>
-      <button
-        className={`nav-toggle${open ? " is-open" : ""}`}
-        type="button"
-        aria-expanded={open}
-        aria-controls="site-nav"
-        aria-label={open ? "Menüyü kapat" : "Menü"}
-        onClick={() => setOpen((v) => !v)}
+    <>
+      <header className={`site-header${solid || open ? " is-solid" : ""}${open ? " is-nav-open" : ""}`}>
+        <Link className="brand" href="/" onClick={close}>
+          <span className="brand-mark"><BarberIcon /></span>
+          <span className="brand-text">{siteConfig.name}</span>
+        </Link>
+        <button
+          className={`nav-toggle${open ? " is-open" : ""}`}
+          type="button"
+          aria-expanded={open}
+          aria-controls="site-nav"
+          aria-label={open ? "Menüyü kapat" : "Menü"}
+          onClick={() => setOpen((v) => !v)}
+        >
+          <span /><span /><span />
+        </button>
+      </header>
+
+      {/* Outside header so position:fixed is not trapped by backdrop-filter */}
+      <nav
+        className={`site-nav${open ? " is-open" : ""}`}
+        id="site-nav"
+        aria-hidden={open ? undefined : true}
       >
-        <span /><span /><span />
-      </button>
-      <nav className={`site-nav${open ? " is-open" : ""}`} id="site-nav" aria-hidden={!open}>
-        <Link href="/" onClick={() => setOpen(false)}>Ana Sayfa</Link>
-        <Link href="/before-after/" onClick={() => setOpen(false)}>Before After</Link>
-        <Link href="/hizmetler/" onClick={() => setOpen(false)}>Hizmetler</Link>
-        <Link href="/blog/" onClick={() => setOpen(false)}>Blog</Link>
-        <Link href="/ilce/bahcelievler/" onClick={() => setOpen(false)}>Bahçelievler</Link>
-        <Link className="nav-cta" href="/iletisim/" onClick={() => setOpen(false)}>Randevu</Link>
+        {links.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className={"cta" in item && item.cta ? "nav-cta" : undefined}
+            onClick={close}
+          >
+            {item.label}
+          </Link>
+        ))}
       </nav>
-    </header>
+    </>
   );
 }
 
